@@ -1,0 +1,72 @@
+{
+	"name": "@kifor/prettier-config",
+	"description": "prettier shareable config",
+	"version": "1.0.0",
+	"scripts": {
+		"update": "ncu -u && npm install",
+		"format": "npx prettier '**/*.{ts,html,js,json,yml}' --check",
+		"format:fix": "npx prettier '**/*.{ts,html,js,json,yml}' --write",
+		"prepare": "husky",
+		"prerelease": "npm run format"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"files": [
+		"index.js"
+	],
+	"engines": {
+		"node": ">=20.8.1"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Kifor Kostiantyn",
+		"email": "kifor.ko@gmail.com"
+	},
+	"homepage": "https://github.com/kiforks/prettier-config#readme",
+	"bugs": {
+		"url": "https://github.com/kiforks/prettier-config/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kiforks/prettier-config.git"
+	},
+	"keywords": [
+		"Kifor Kostiantyn",
+		"code",
+		"quality",
+		"style",
+		"lint",
+		"linter",
+		"prettier",
+		"validate",
+		"code style",
+		"strict",
+		"check",
+		"checker",
+		"enforce",
+		"hint",
+		"code lint",
+		"kiforko",
+		"kiforks",
+		"kskifor",
+		"prettier",
+		"prettier-config",
+		"prettier config",
+		"kifor"
+	],
+	"dependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+		"prettier-plugin-organize-attributes": "^1.0.0"
+	},
+	"peerDependencies": {
+		"prettier": "^3.4.0"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.17.13",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.2.11",
+		"lodash": "^4.17.21",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^3.4.2"
+	}
+}

@@ -1,0 +1,106 @@
+import pluginSortImports from '@ianvs/prettier-plugin-sort-imports';
+
+import pluginOrganizeAttributes from 'prettier-plugin-organize-attributes';
+
+/**
+ * @see https://prettier.io/docs/en/configuration.html
+ * @type {import("prettier").Config}
+ */
+const config = {
+	plugins: [pluginOrganizeAttributes, pluginSortImports],
+	trailingComma: 'es5',
+	tabWidth: 2,
+	singleQuote: true,
+	useTabs: true,
+	printWidth: 120,
+	htmlWhitespaceSensitivity: 'ignore',
+	arrowParens: 'avoid',
+	quoteProps: 'preserve',
+
+	attributeSort: 'ASC',
+	attributeGroups: [
+		'$ANGULAR_STRUCTURAL_DIRECTIVE',
+		'$ANGULAR_ANIMATION',
+		'$ANGULAR_ANIMATION_INPUT',
+		'$ANGULAR_ELEMENT_REF',
+		'^btn',
+		'^link',
+		'$ID',
+		'$CLASS',
+		'^i18n-alt',
+		'^alt',
+		'^i18n-label',
+		'^label',
+		'^i18n-placeholder',
+		'^placeholder',
+		'^i18n-title',
+		'^title',
+		'^i18n-tooltip',
+		'^tooltip',
+		'$DEFAULT',
+		'^\\[(?!\\(|@|attr\\.data-)',
+		'$ANGULAR_TWO_WAY_BINDING',
+		'$ANGULAR_OUTPUT',
+		'^\\[attr\\.data-',
+		'^data-',
+	],
+
+	importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
+	importOrderTypeScriptVersion: '5.0.0',
+	importOrder: [
+		'^@angular/core/?.*$',
+		'^@angular/common/?.*$',
+		'^@angular/platform-browser/?.*$',
+		'^@angular/router/?.*$',
+		'^@angular/forms/?.*$',
+		'^@angular/animations/?.*$',
+		'^@angular/material/?.*$',
+		'^@angular/cdk/?.*$',
+		'^@angular/fire/?.*$',
+		'^@angular/?.*$',
+		'',
+		'^@env/(.*)$',
+		'',
+		'^@nx/?.*$',
+		'',
+		'^@ngneat/spectator$',
+		'^ng-mocks$',
+		'',
+		'^@ngx-?.*$',
+		'^@ng-?.*$',
+		'^@ng-?.*$',
+		'',
+		'^@.*$',
+		'',
+		'^rxjs.*$',
+		'^lodash$',
+		'',
+		'<THIRD_PARTY_MODULES>',
+		'',
+		'^.*(\\.module)/?.*$',
+		'^.*(\\.config)/?.*$',
+		'',
+		'^.*(/services|\\.service|/api|\\.api|/dto|\\.dto)/?.*$',
+		'^.*(/guards|\\.guard|/helpers|\\.helper)/?.*$',
+		'^.*(/components|\\.component|/pages|/modals|/directives|\\.directive|/pipes|\\.pipe)/?.*$',
+		'^.*(/resolvers|\\.resolver|/factories|\\.factory|/adapters|\\.adapter|/validators|\\.validator)/?.*$',
+		'^.*(/mixins|\\.mixin|/mappers|\\.mapper|/states|\\.state|/stores|\\.store)/?.*$',
+		'^.*(/interfaces|\\.interface|/enums|\\.enum|/models|\\.model|/types|\\.type|/routes|\\.route|/classes)/?.*$',
+		'^.*(/i18n|\\.i18n|/constants|/utils|\\.util|/utilities)/?.*$',
+		'',
+		'^[./]',
+		'',
+		'.*',
+	],
+
+	overrides: [
+		{
+			files: '*.html',
+			options: {
+				parser: 'angular',
+			},
+		},
+	],
+};
+
+export default config;

@@ -1,0 +1,15 @@
+ci:
+  - changed-files:
+      - any-glob-to-any-file: '.github/**/*'
+
+configuration:
+  - changed-files:
+      - any-glob-to-any-file: '.prettierrc.json'
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+
+root:
+  - changed-files:
+      - any-glob-to-any-file: '*'

@@ -9,6 +9,9 @@
 		"prepare": "husky",
 		"prerelease": "npm run format"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"type": "module",
 	"exports": "./index.js",
 	"files": [

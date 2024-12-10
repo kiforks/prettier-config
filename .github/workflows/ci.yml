@@ -66,7 +66,7 @@ jobs:
           fi
 
   validation:
-    name: 'Code Quality and Tests'
+    name: 'Code Quality'
     runs-on: ubuntu-latest
     strategy:
       matrix:

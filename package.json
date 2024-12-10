@@ -1,5 +1,5 @@
 {
-	"name": "@kifor/prettier-config",
+	"name": "@kiforks/prettier-config",
 	"description": "prettier shareable config",
 	"version": "1.0.0",
 	"scripts": {

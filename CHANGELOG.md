@@ -7,7 +7,7 @@
 
 - **Prettier Configuration**  
   Updated the `quoteProps` rule to use the `as-needed` setting for improved consistency in object property quoting.  
-  [🔗 PR #3](https://github.com/kiforks/prettier-config/pull/3) by [@kiforks](https://github.com/kiforks)
+  [🔗 PR #5](https://github.com/kiforks/prettier-config/pull/5) by [@kiforks](https://github.com/kiforks)
 
 ---
 

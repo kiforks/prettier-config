@@ -15,7 +15,7 @@ const config = {
 	printWidth: 120,
 	htmlWhitespaceSensitivity: 'ignore',
 	arrowParens: 'avoid',
-	quoteProps: 'preserve',
+	quoteProps: 'as-needed',
 
 	attributeSort: 'ASC',
 	attributeGroups: [

@@ -1,6 +1,16 @@
 # 📝 Changelog
 
 
+## [1.0.3] - 2025-02-12
+
+### 🛠 Fixes
+
+- **Import Ordering**  
+  Fixed import ordering by removing duplicate values for better maintainability.  
+  [🔗 PR #7](https://github.com/kiforks/prettier-config/pull/7) by [@kiforks](https://github.com/kiforks)
+
+---
+
 ## [1.0.2] - 2024-12-21
 
 ### 🔄 Updates

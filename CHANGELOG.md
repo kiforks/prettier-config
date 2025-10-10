@@ -1,6 +1,17 @@
 # 📝 Changelog
 
 
+## [1.0.4] - 2025-10-10
+
+### 🔄 Updates
+
+- **Dependencies**  
+  Updated Prettier and related plugins to their latest versions for improved compatibility and performance.
+
+  [🔗 PR #8](https://github.com/kiforks/prettier-config/pull/8) by [@kiforks](https://github.com/kiforks)
+
+---
+
 ## [1.0.3] - 2025-02-12
 
 ### 🛠 Fixes

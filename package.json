@@ -59,12 +59,12 @@
 	],
 	"dependencies": {
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-		"prettier-plugin-organize-attributes": "^1.0.0"
-	},
-	"peerDependencies": {
-		"prettier": "^3.4.0",
+		"prettier-plugin-organize-attributes": "^1.0.0",
 		"@prettier/plugin-oxc": "^0.0.4",
 		"prettier-plugin-ember-template-tag": "^2.1.0"
+	},
+	"peerDependencies": {
+		"prettier": "^3.4.0"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.17.20",

@@ -21,6 +21,12 @@ jobs:
   changeset-status:
     name: 'Check Changeset'
     runs-on: ubuntu-latest
+    # Skip on the bot-opened Version PR (`changeset-release/main`). That PR
+    # consumes changesets instead of adding them, so this check would fail
+    # by design. Exact branch match — `changesets/action` hard-codes the name
+    # as `changeset-release/<base>`, so a regular contributor can't bypass
+    # the check by naming their branch similarly.
+    if: ${{ github.head_ref != 'changeset-release/main' }}
     steps:
       - uses: actions/checkout@v4
         with:

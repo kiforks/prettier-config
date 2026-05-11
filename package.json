@@ -8,7 +8,8 @@
 		"format:fix": "prettier '**/*.{ts,html,js,json,yml}' --write",
 		"test": "node --test --test-reporter=spec",
 		"test:update-snapshots": "node tests/update-snapshots.js",
-		"prepare": "husky"
+		"prepare": "husky",
+		"prepublishOnly": "npm run format && npm test"
 	},
 	"publishConfig": {
 		"access": "public"

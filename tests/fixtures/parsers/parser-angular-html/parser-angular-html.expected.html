@@ -1,0 +1,6 @@
+<ng-container *ngIf="user$ | async as user">
+	<h1>Hello {{ user.name }}</h1>
+	<button [class.primary]="isPrimary" [disabled]="loading()" (click)="save(user)">Save</button>
+	<input [value]="user.email" [(ngModel)]="user.name" (input)="onInput($event)" />
+	<div *ngFor="let item of items; trackBy: trackById">{{ item.label }}</div>
+</ng-container>

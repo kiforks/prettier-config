@@ -41,6 +41,6 @@ Thumbs.db
 /storage
 /**/*.map
 
-# Styles
-/**/*.scss
-/**/*.html
+# Local sandbox files (for manual prettier checks at repo root only)
+/*.scss
+/*.html

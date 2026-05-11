@@ -1,15 +1,51 @@
 ci:
   - changed-files:
-      - any-glob-to-any-file: '.github/**/*'
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+          - '.github/labeler.yml'
 
-configuration:
+config:
   - changed-files:
-      - any-glob-to-any-file: '.prettierrc.json'
+      - any-glob-to-any-file:
+          - 'index.js'
+          - '.prettierrc.js'
+          - '.prettierignore'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tests/**'
+
+changesets:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.changeset/*.md'
 
 docs:
   - changed-files:
-      - any-glob-to-any-file: '**/*.md'
+      - any-glob-to-any-file:
+          - 'README.md'
+          - 'LICENSE.md'
+          - 'CHANGELOG.md'
+          - '.github/PULL_REQUEST_TEMPLATE.md'
+          - '.github/ISSUE_TEMPLATE/**'
 
-root:
+tooling:
   - changed-files:
-      - any-glob-to-any-file: '*'
+      - any-glob-to-any-file:
+          - '.husky/**'
+          - '.lintstagedrc.json'
+          - '.gitignore'
+          - '.gitattributes'
+          - '.editorconfig'
+          - '.npmrc'
+
+release:
+  - head-branch:
+      - '^changeset-release/.*'

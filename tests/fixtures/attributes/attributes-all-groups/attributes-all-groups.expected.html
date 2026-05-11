@@ -1,0 +1,28 @@
+<div
+	*ngIf="user"
+	@fadeOut
+	[@fadeIn]="x"
+	#ref
+	btn-primary
+	link-blue
+	id="my-id"
+	class="container"
+	i18n-alt
+	alt="img-alt"
+	i18n-label
+	label="lbl"
+	i18n-placeholder
+	placeholder="ph"
+	i18n-title
+	title="ttl"
+	i18n-tooltip
+	tooltip="ttp"
+	src="x.png"
+	[hidden]="loading"
+	[(ngModel)]="x"
+	(click)="onClick()"
+	[attr.data-id]="x"
+	data-test="x"
+>
+	Content
+</div>

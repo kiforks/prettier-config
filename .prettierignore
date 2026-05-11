@@ -1,1 +1,4 @@
 /**/*.md
+
+# Test fixture inputs are intentionally unformatted
+tests/fixtures/**/*.input.*

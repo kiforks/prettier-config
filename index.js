@@ -8,6 +8,8 @@ import pluginOrganizeAttributes from 'prettier-plugin-organize-attributes';
  */
 const config = {
 	plugins: [pluginOrganizeAttributes, pluginSortImports],
+
+	// ─── Core Prettier options ────────────────────────────────────────────
 	trailingComma: 'es5',
 	tabWidth: 2,
 	singleQuote: true,
@@ -17,17 +19,20 @@ const config = {
 	arrowParens: 'avoid',
 	quoteProps: 'as-needed',
 
+	// ─── Angular HTML attribute ordering ──────────────────────────────────
+	// Lower index = earlier in the rendered tag. Tests in
+	// tests/fixtures/attributes/ pin every group below.
 	attributeSort: 'ASC',
 	attributeGroups: [
-		'$ANGULAR_STRUCTURAL_DIRECTIVE',
-		'$ANGULAR_ANIMATION',
-		'$ANGULAR_ANIMATION_INPUT',
-		'$ANGULAR_ELEMENT_REF',
-		'^btn',
-		'^link',
-		'$ID',
-		'$CLASS',
-		'^i18n-alt',
+		'$ANGULAR_STRUCTURAL_DIRECTIVE', // *ngIf, *ngFor, *ngSwitchCase
+		'$ANGULAR_ANIMATION', // @fadeIn
+		'$ANGULAR_ANIMATION_INPUT', // [@fadeIn]="x"
+		'$ANGULAR_ELEMENT_REF', // #templateRef, #ref
+		'^btn', // btn-primary, btn-link
+		'^link', // link-blue
+		'$ID', // id="…"
+		'$CLASS', // class="…", [class.x]="…"
+		'^i18n-alt', // i18n-alt (then alt= below)
 		'^alt',
 		'^i18n-label',
 		'^label',
@@ -37,21 +42,26 @@ const config = {
 		'^title',
 		'^i18n-tooltip',
 		'^tooltip',
-		'$DEFAULT',
-		'^\\[(?!\\(|@|attr\\.data-)',
-		'$ANGULAR_TWO_WAY_BINDING',
-		'$ANGULAR_OUTPUT',
-		'^\\[attr\\.data-',
-		'^data-',
+		'$DEFAULT', // anything not matched explicitly (src, type, …)
+		'^\\[(?!\\(|@|attr\\.data-)', // property bindings [hidden]="…" — exclude two-way, animation, data-attr
+		'$ANGULAR_TWO_WAY_BINDING', // [(ngModel)]
+		'$ANGULAR_OUTPUT', // (click), (input)
+		'^\\[attr\\.data-', // [attr.data-id]="…"
+		'^data-', // data-id="…"
 	],
 
+	// ─── TypeScript import sorting (@ianvs/prettier-plugin-sort-imports) ──
+	// Each '' inserts a blank line between groups in the output.
+	// Tests in tests/fixtures/imports/ pin every group below.
 	importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
 	importOrderTypeScriptVersion: '5.0.0',
 	importOrder: [
+		// Test-only utilities (mocks, fakes) — must come first
 		'^@ngneat/?.*$',
 		'^@faker/?.*$',
 		'^ng-mocks$',
 		'',
+		// Angular framework — in canonical layering order
 		'^@angular/core/?.*$',
 		'^@angular/common/?.*$',
 		'^@angular/platform-browser/?.*$',
@@ -61,25 +71,32 @@ const config = {
 		'^@angular/material/?.*$',
 		'^@angular/cdk/?.*$',
 		'^@angular/fire/?.*$',
-		'^@angular/?.*$',
+		'^@angular/?.*$', // any other @angular/*
 		'',
-		'^@env/(.*)$',
+		// Workspace path aliases
+		'^@env/(.*)$', // @env/environment
 		'',
-		'^@nx/?.*$',
+		'^@nx/?.*$', // Nx workspace tooling
 		'',
+		// Angular community ecosystem
 		'^@ngx-?.*$',
 		'^@ng-?.*$',
 		'',
+		// Any other scoped packages
 		'^@.*$',
 		'',
+		// Reactive / utility libraries
 		'^rxjs.*$',
 		'^lodash$',
 		'',
+		// All other third-party packages
 		'<THIRD_PARTY_MODULES>',
 		'',
+		// App-level modules and configs
 		'^.*(\\.module)/?.*$',
 		'^.*(\\.config)/?.*$',
 		'',
+		// App-level features — split by Angular concept
 		'^.*(/services|\\.service|/api|\\.api|/dto|\\.dto)/?.*$',
 		'^.*(/guards|\\.guard|/helpers|\\.helper)/?.*$',
 		'^.*(/components|\\.component|/pages|/modals|/directives|\\.directive|/pipes|\\.pipe)/?.*$',
@@ -88,11 +105,15 @@ const config = {
 		'^.*(/interfaces|\\.interface|/enums|\\.enum|/models|\\.model|/types|\\.type|/routes|\\.route|/classes)/?.*$',
 		'^.*(/i18n|\\.i18n|/constants|/utils|\\.util|/utilities)/?.*$',
 		'',
+		// Relative imports (./sibling, ../parent)
 		'^[./]',
 		'',
+		// Catch-all — anything left over
 		'.*',
 	],
 
+	// ─── File-type parser overrides ────────────────────────────────────────
+	// .html files use Angular's template parser instead of plain HTML.
 	overrides: [
 		{
 			files: '*.html',

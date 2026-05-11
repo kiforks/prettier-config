@@ -4,10 +4,11 @@
 	"version": "1.0.4",
 	"scripts": {
 		"update": "ncu -u && npm install",
-		"format": "npx prettier '**/*.{ts,html,js,json,yml}' --check",
-		"format:fix": "npx prettier '**/*.{ts,html,js,json,yml}' --write",
-		"prepare": "husky",
-		"prerelease": "npm run format"
+		"format": "prettier '**/*.{ts,html,js,json,yml}' --check",
+		"format:fix": "prettier '**/*.{ts,html,js,json,yml}' --write",
+		"test": "node --test --test-reporter=spec",
+		"test:update-snapshots": "node tests/update-snapshots.js",
+		"prepare": "husky"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -18,7 +19,7 @@
 		"index.js"
 	],
 	"engines": {
-		"node": ">=20.8.1"
+		"node": ">=22.22.1"
 	},
 	"license": "MIT",
 	"author": {
@@ -41,6 +42,8 @@
 		"lint",
 		"linter",
 		"prettier",
+		"prettier-config",
+		"prettier config",
 		"validate",
 		"code style",
 		"strict",
@@ -52,26 +55,22 @@
 		"kiforko",
 		"kiforks",
 		"kskifor",
-		"prettier",
-		"prettier-config",
-		"prettier config",
 		"kifor"
 	],
 	"dependencies": {
-		"@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-		"prettier-plugin-organize-attributes": "^1.0.0",
-		"@prettier/plugin-oxc": "^0.0.4",
-		"prettier-plugin-ember-template-tag": "^2.1.0"
+		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+		"@prettier/plugin-oxc": "^0.1.4",
+		"prettier-plugin-ember-template-tag": "^2.1.5",
+		"prettier-plugin-organize-attributes": "^1.0.0"
 	},
 	"peerDependencies": {
-		"prettier": "^3.4.0"
+		"prettier": "^3.8.0"
 	},
 	"devDependencies": {
-		"@types/lodash": "^4.17.20",
+		"@changesets/changelog-github": "^0.7.0",
+		"@changesets/cli": "^2.31.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^16.2.3",
-		"lodash": "^4.17.21",
-		"npm-run-all": "^4.1.5",
-		"prettier": "^3.6.2"
+		"lint-staged": "^17.0.2",
+		"prettier": "^3.8.3"
 	}
 }

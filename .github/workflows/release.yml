@@ -14,6 +14,11 @@ permissions:
   pull-requests: write
   id-token: write
 
+env:
+  # Disable husky for the entire workflow — bot commits use changesets format
+  # (`chore: release packages`), which our local commit-msg hook rejects.
+  HUSKY: '0'
+
 jobs:
   release:
     name: 'Release'

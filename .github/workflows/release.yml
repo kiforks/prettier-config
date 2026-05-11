@@ -22,6 +22,10 @@ env:
   # Husky hooks are for local dev only. CI doesn't need them, and the bot's
   # release commit wouldn't pass our strict commit-msg hook regex without this.
   HUSKY: '0'
+  # Opt in to running official GitHub Actions on Node 24 ahead of the
+  # June 2026 default switchover. Suppresses the deprecation warning on
+  # actions/checkout@v4 / actions/setup-node@v4 about Node 20 being phased out.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
   release:

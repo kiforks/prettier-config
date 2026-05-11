@@ -31,6 +31,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Use the PAT for git operations too, not just GitHub API. Without
+          # this, `actions/checkout` configures git remote with the default
+          # GITHUB_TOKEN, so when `changesets/action` later runs
+          # `git push --force origin changeset-release/main` to update the
+          # Version PR, the push is authored by github-actions[bot] — and
+          # GitHub deliberately skips workflow triggers for events caused by
+          # GITHUB_TOKEN, leaving the Version PR's required checks stuck in
+          # "Expected" forever.
+          token: ${{ secrets.CHANGESETS_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

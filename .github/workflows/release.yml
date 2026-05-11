@@ -12,11 +12,15 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  # Required for npm Trusted Publishing (OIDC). The id-token is what proves to
+  # npm that the publish request really comes from this GitHub Actions workflow,
+  # so no long-lived npm token (and no 2FA bypass) is needed.
+  # See: https://docs.npmjs.com/trusted-publishers
   id-token: write
 
 env:
-  # Disable husky for the entire workflow — bot commits use changesets format
-  # (`chore: release packages`), which our local commit-msg hook rejects.
+  # Husky hooks are for local dev only. CI doesn't need them, and the bot's
+  # release commit wouldn't pass our strict commit-msg hook regex without this.
   HUSKY: '0'
 
 jobs:
@@ -40,14 +44,21 @@ jobs:
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
-          # NPM_CONFIG_PROVENANCE below signs the published package with a sigstore
-          # attestation tied to this workflow run, so npmjs.com shows a verified badge.
           publish: npx changeset publish
           version: npx changeset version
-          commit: 'chore: release packages'
-          title: 'chore: release packages'
+          # Convention-compliant format: type [TASK-ID]: Message.
+          # REL-0 is a synthetic task ID reserved for automated releases so the
+          # bot's commits sit cleanly alongside human commits in git history.
+          commit: 'chore [REL-0]: Release packages'
+          title: 'chore [REL-0]: Release packages'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-          NPM_CONFIG_PROVENANCE: 'true'
+          # CHANGESETS_TOKEN is a Personal Access Token (classic, scopes: repo + workflow).
+          # Required so the Version Packages PR opened by the bot triggers CI
+          # workflows — PRs opened via the default GITHUB_TOKEN do not, by design.
+          # See: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+          GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN }}
+          # No NPM_TOKEN here — we use npm Trusted Publishing (OIDC). npm CLI
+          # exchanges the GitHub Actions OIDC token (granted via id-token: write
+          # above) for a short-lived npm publish credential. Provenance is signed
+          # automatically and verified by npmjs.com against the trusted publisher
+          # configuration of the package.

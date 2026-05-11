@@ -45,6 +45,13 @@ jobs:
 
       - run: npm ci
 
+      # Final safety gate: re-run our own Prettier config against the repo
+      # and execute the full test suite before allowing any release action.
+      # If formatting or tests regressed on main between PR merge and now,
+      # the publish step never even starts.
+      - name: Verify
+        run: npm run verify
+
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:

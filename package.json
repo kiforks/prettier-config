@@ -1,7 +1,7 @@
 {
 	"name": "@kiforks/prettier-config",
 	"description": "prettier shareable config",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"scripts": {
 		"update": "ncu -u && npm install",
 		"format": "prettier '**/*.{ts,html,js,json,yml}' --check",

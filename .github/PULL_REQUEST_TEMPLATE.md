@@ -1,24 +1,29 @@
-## Description
+## Summary
 
-Briefly describe the changes introduced by this merge request (e.g., updated Stylelint rules, dependency upgrades, bug fixes). Limit to 150 chars.
+<!-- 2–5 high-level bullets: main outcome, motivation, what reviewers should look at first. -->
+
+-
+
+## Changes
+
+<!-- 4–12 bullets grouped by logical area. Prefer concrete verbs: Added, Updated, Refactored, Fixed, Removed. -->
+
+-
 
 ## Checklist
 
-- [ ] **Clear and concise description** of the changes.
-- [ ] **Changelog updated** (if the changes affect users).
-- [ ] **Code review completed** for readability and maintainability.
-- [ ] **Impact assessment** done to identify potential side effects.
-- [ ] **Documentation updated** if the changes alter usage or behavior.
+- [ ] `.changeset/*.md` added — `npx changeset` for user-facing changes, `npx changeset --empty` for internal-only PRs.
+- [ ] `npm test` passes locally.
+- [ ] `npm run format` is clean.
+- [ ] If a config rule in `index.js` changed: ran `npm run test:update-snapshots` and reviewed `git diff tests/fixtures/` before committing.
+- [ ] If `engines.node` or `peerDependencies.prettier` changed: changeset is **major** (breaking for consumers).
 
-## Related Issues/Tickets (Optional)
+## Related _(optional)_
 
-- Related Issue/Proposal: [Link]
-- Closes: [Link to GitHub Issue or Jira Ticket]
+- Closes:
+- Refs:
 
-## Screenshots/Outputs (Optional)
-
-Add relevant screenshots, code snippets, or terminal outputs to demonstrate changes (if applicable).
-
-## Additional Notes (Optional)
-
-Provide context, reasoning, or any additional details regarding the changes. For technical updates (e.g., package upgrades), specify the reason for the change.
+<!--
+Tip: run the `/pull-request-information` skill against this branch to generate
+the Summary + Changes sections automatically from the diff.
+-->

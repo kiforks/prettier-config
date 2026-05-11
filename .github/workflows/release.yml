@@ -39,6 +39,11 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org/'
 
+      # Node 22 ships with npm 10.x, but Trusted Publishing (OIDC) requires
+      # npm 11.5.1+. Upgrade explicitly so `npm publish` knows how to exchange
+      # the GitHub Actions OIDC token for an npm publish credential.
+      - run: npm install -g npm@latest
+
       - run: npm ci
 
       - name: Create Release Pull Request or Publish to npm

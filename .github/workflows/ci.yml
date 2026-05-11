@@ -6,6 +6,12 @@ on:
       - main
       - '!dependabot/**'
 
+env:
+  # Opt in to running official GitHub Actions on Node 24 ahead of the
+  # June 2026 default switchover. Suppresses the deprecation warning on
+  # actions/checkout@v4 / actions/setup-node@v4 about Node 20 being phased out.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   labeler:
     permissions:

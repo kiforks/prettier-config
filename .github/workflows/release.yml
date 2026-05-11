@@ -35,14 +35,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          # Node 24 ships with npm 11.x, which is required for npm Trusted
+          # Publishing (OIDC token exchange). Node 22 ships with npm 10.x
+          # which doesn't support it. Both versions satisfy our engines.node
+          # constraint (>=22.22.1), so this is purely a CI-environment choice.
+          node-version: '24.x'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org/'
-
-      # Node 22 ships with npm 10.x, but Trusted Publishing (OIDC) requires
-      # npm 11.5.1+. Upgrade explicitly so `npm publish` knows how to exchange
-      # the GitHub Actions OIDC token for an npm publish credential.
-      - run: npm install -g npm@latest
 
       - run: npm ci
 

@@ -1,5 +1,28 @@
 # 📝 Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- [#15](https://github.com/kiforks/prettier-config/pull/15) [`34c3b98`](https://github.com/kiforks/prettier-config/commit/34c3b983efb2249c5677081453db8cc1a0d6d138) Thanks [@kiforks](https://github.com/kiforks)! - **🔒 Security**
+  - Added a `verify` npm script (`npm run format && npm test`) and called it
+    explicitly from `.github/workflows/release.yml` right before the release
+    step. If formatting or tests regressed on main between PR merge and the
+    release run, the publish step never starts — the registry can't see a
+    broken build.
+
+  **🧹 Internal**
+  - The `pre-push` husky hook now also runs `npm run format` after validating
+    the branch name. Pre-commit lint-staged only covers staged files, so this
+    catches stray unformatted files that were committed without staging or via
+    `--no-verify`. Combined with the existing CI job and the new release-time
+    verify step, the project has three independent layers of formatting
+    validation.
+  - Resynced `package-lock.json` version field from `1.0.4` to `2.0.0` — the
+    v2 publish bumped `package.json` but `changesets/action` doesn't run
+    `npm install` after `changeset version`, so the lockfile was stuck on the
+    old version.
+
 ## 2.0.0
 
 ### Major Changes

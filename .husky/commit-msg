@@ -4,7 +4,7 @@
 max_length=100
 
 # Regular expression for valid commit message format (only checks the first line)
-commit_regex="^(feat|fix|build|chore|ci|docs|perf|refactor|revert|style|test) \[(DEV|GEN)-[0-9]{1,}\]: [A-Z][a-zA-Z0-9 ]+$"
+commit_regex="^(feat|fix|build|chore|ci|docs|perf|refactor|revert|style|test) \[(DEV|GEN|REL)-[0-9]{1,}\]: [A-Z][a-zA-Z0-9 ]+$"
 
 # Get the full commit message
 commit_message=$(cat "$1")
@@ -40,9 +40,9 @@ if ! echo "$commit_message" | grep -Eq "^(feat|fix|build|chore|ci|docs|perf|refa
 fi
 
 # Check the Jira task format
-if ! echo "$commit_message" | grep -Eq "\[(DEV|GEN)-[0-9]{1,}\]"; then
+if ! echo "$commit_message" | grep -Eq "\[(DEV|GEN|REL)-[0-9]{1,}\]"; then
   print_error
-  echo "❌ Commit error: The Jira task format is incorrect. It should be in the format '[DEV-123]' or '[GEN-123]'."
+  echo "❌ Commit error: The Jira task format is incorrect. It should be in the format '[DEV-123]', '[GEN-123]', or '[REL-0]' (reserved for automated releases)."
   exit 1
 fi
 
